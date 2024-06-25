@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--เพิ่ม element ผ่าน input ของ user--ex1 to do list-->
+    <input type="text" name="" id="todo"/>  
+    <button id="submitButton">เพิ่ม Todo </button>   
+
+    <!--<div id="result">  1.5--/ เปลี่ยนเป็น ul ใน1.9-->
+
+    <ul id="result">  <!--ul ไม่เรียงลำดับ  Ol orderlist เรียงลำดับ-->
+
+    </ul>
+
+    <script>
+        const submitButton = document.getElementById("submitButton") ; //1.1 เรียกelementของปุ่ม ว่าติดรึยัง
+        submitButton.addEventListener("click",addTodo);//1.2 ใส่ event ให้กับปุ่ม โดยใช้ addEventListener-คำสั่งจาว่าสคริป (อ่านเพิ่ม w3 js)เพิ่มอีเว้นการรับฟังก์เข้าไปให่อีเว้นตัวนี้,function
+
+
+        function addTodo(){
+           // console.log("hello todo")   //1.3 ลองเช็คกดปุ่ม todo แล้วแสดง hello world ใน console ตรง inspect
+            const valueTodo = document.getElementById("todo").value;  //1.4 เรียก element id todo ออกมาก่อน  -- ตัวแปรมารองรับชื่อ valuetodo
+            //const p = document.createElement('p') //1.7
+            //p.innnerHTML = valueTodo   //1.8  เรียก element ที่อยู่ใน js มาใส่ใน html 
+           // const result=document.getElementById('result') //1.6
+           // result.appendChild //1.9 เพิ่มลูกให้กับ elementนั้นๆ (element P ข้อ 1.8)
+
+           const result=document.getElementById("result");
+           result.innerHTML += `<li>${valueTodo}</li>`;    //` จะสาามารถใส่คำสั่ง js ลงไปตรงๆได้เลย  += +คือ+ค่าเก่าไปด้วย เป็นlistๆ
+        }
+
+            //fetch ('http://jsonplaceholder.typicode.com/todos/1')  //ตัวบอกว่าเราอยากจะไปดึงข้อมูลจากที่ไหน
+            //.then(response => response.json)  -จากเว็บ jsonplaceholder
+            //.then(json => console.log(json))  -โชว์ค่าคล้ายarray 
+
+            //ex1 ดึงข้อมูลจากอีกเว็บมาแสดง
+           // fetch ('http://jsonplaceholder.typicode.com/todos')  //เอาข้อมูลทั้งหมดมา  /1 เอามาแค่ตัวที่1
+           // .then(response => response.json())
+           // .then(json => {
+           //     for (let i=0; i<json.length;i++)  { //json.length จำนวนข้อมูล
+           //     const result = document.getElementById("result");
+          ///      result.innerHTML += `<li>${json[i].id}</li>`}
+          //  })
+      
+          // เขียนแบบที่2 ใช้ async รอข้อมูล
+          async function getData(){
+               const response = await fetch ('http://jsonplaceholder.typicode.com/todos')
+               const json = await response.json()
+                for (let i=0; i<json.length;i++)  { 
+               const result = document.getElementById("result");
+               result.innerHTML += `<li>${json[i].id}</li>`}
+          }
+             getData()
+
+                let student = {
+                    name: 'John',
+                    age : 20,
+                    isGraduated:false
+                }
+            console.log(student.name)
+        
+    </script>
+</body>
+</html>
