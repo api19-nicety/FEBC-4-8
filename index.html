@@ -16,6 +16,7 @@
 
     </ul>
 
+
     <script>
         const submitButton = document.getElementById("submitButton") ; //1.1 เรียกelementของปุ่ม ว่าติดรึยัง
         submitButton.addEventListener("click",addTodo);//1.2 ใส่ event ให้กับปุ่ม โดยใช้ addEventListener-คำสั่งจาว่าสคริป (อ่านเพิ่ม w3 js)เพิ่มอีเว้นการรับฟังก์เข้าไปให่อีเว้นตัวนี้,function
@@ -54,6 +55,8 @@
                const result = document.getElementById("result");
                result.innerHTML += `<li>${json[i].id}</li>`}
           }
+
+          console.log ("This is from Git")
              getData()
 
                 let student = {
